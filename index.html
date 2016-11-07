@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta charset='utf8'>
+<script src="spine-canvas.js"></script>
+<style>
+</style>
+</head>
+<body>
+<canvas width="350" height="350" id="canvas" style="border:1px solid black;"></canvas>
+<br>
+<button id="switch-damage" onclick="switch_damage()">中破</button>
+<button onclick="play('attack')">炮击</button>
+<button onclick="play('throw')">鱼雷</button>
+<button onclick="play('damage')">中弹</button>
+<button onclick="play('Antiaircraft')">防空</button>
+<button onclick="play('wreck')">沉没(WIP)</button>
+<button onclick="play_skill()">技能</button>
+</body>
+<script>
+var spine_name = 'Ship_girl_1099';
+var filename = "assets/" + spine_name;
+
+var lastFrameTime = Date.now() / 1000;
+var ctx;
+var asset;
+var skeleton, state;
+var renderer;
+var damage = false;
+var playing = false;
+
+function switch_damage() {
+    var btn = document.getElementById("switch-damage");
+    if (damage) {
+        damage = false;
+        btn.innerText = "中破";
+        skeleton.setSkinByName("normal");
+    } else {
+        damage = true;
+        btn.innerText = "恢复";
+        skeleton.setSkinByName("damage");
+        play_damage();
+    }
+}
+
+function init() {
+    var canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+
+    renderer = new spine.canvas.SkeletonRenderer(ctx);
+    renderer.debugRendering = true;
+
+    asset = new spine.canvas.AssetManager();
+
+    asset.loadText(filename + ".json");
+    asset.loadText(filename + ".atlas");
+    asset.loadTexture(filename + ".png");
+
+    requestAnimationFrame(wait_asset);
+}
+
+function wait_asset() { if (asset.isLoadingComplete()) init2(); else requestAnimationFrame(wait_asset); }
+
+function init2() {
+    var atlas = new spine.TextureAtlas(asset.get(filename + ".atlas"), function(p) { return asset.get("assets/" + p); });
+    var data = new spine.SkeletonJson(new spine.TextureAtlasAttachmentLoader(atlas));
+    skeleton = new spine.Skeleton(data.readSkeletonData(asset.get(filename + ".json")));
+    console.log(asset.get(filename + ".json"));
+    skeleton.flipY = true;
+    skeleton.setSkinByName("normal");
+
+    state = new spine.AnimationState(new spine.AnimationStateData(skeleton.data));
+    state.setAnimation(0, "normal", true);
+
+    ctx.translate(175, 315);
+    requestAnimationFrame(render);
+}
+
+function render() {
+    var now = Date.now() / 1000;
+    var delta = now - lastFrameTime;
+    lastFrameTime = now;
+
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(-175, -315, 350, 350);
+
+    state.update(delta);
+    state.apply(skeleton);
+    skeleton.updateWorldTransform();
+    renderer.draw(skeleton);
+
+    requestAnimationFrame(render);
+}
+
+function play(anim) {
+    if (playing) return;
+    playing = true;
+    state.setAnimation(0, anim, false);
+    state.addListener({
+        event: function() { },
+        complete: function(track, loop) {
+            playing = false;
+            state.setAnimation(0, "normal", true);
+            state.clearListeners();
+        },
+        start: function() { },
+        end: function() { }
+    });
+}
+
+function play_damage() { play("damage"); }
+
+function play_skill() { play("Dodging"); }
+
+(function() {
+    init();
+}());
+
+</script>
+</html>
