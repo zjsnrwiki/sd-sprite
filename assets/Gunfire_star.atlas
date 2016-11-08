@@ -1,0 +1,321 @@
+
+Gunfire_star.png
+size: 1024,1024
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+Big_bang_at_sea0001
+  rotate: false
+  xy: 558, 147
+  size: 91, 91
+  orig: 200, 200
+  offset: 57, 54
+  index: -1
+Big_bang_at_sea0003
+  rotate: false
+  xy: 411, 194
+  size: 145, 145
+  orig: 200, 200
+  offset: 29, 27
+  index: -1
+Big_bang_at_sea0005
+  rotate: false
+  xy: 2, 662
+  size: 178, 175
+  orig: 200, 200
+  offset: 11, 12
+  index: -1
+Big_bang_at_sea0007
+  rotate: false
+  xy: 2, 839
+  size: 181, 181
+  orig: 200, 200
+  offset: 6, 6
+  index: -1
+Big_bang_at_sea0009
+  rotate: false
+  xy: 571, 873
+  size: 176, 147
+  orig: 200, 200
+  offset: 16, 25
+  index: -1
+Big_bang_at_sea0011
+  rotate: false
+  xy: 381, 865
+  size: 188, 155
+  orig: 200, 200
+  offset: 10, 20
+  index: -1
+Big_bang_at_sea0013
+  rotate: false
+  xy: 185, 861
+  size: 194, 159
+  orig: 200, 200
+  offset: 6, 18
+  index: -1
+Big_bang_at_sea0015
+  rotate: true
+  xy: 2, 466
+  size: 194, 159
+  orig: 200, 200
+  offset: 6, 18
+  index: -1
+Big_bang_at_sea0017
+  rotate: true
+  xy: 172, 295
+  size: 179, 122
+  orig: 200, 200
+  offset: 7, 44
+  index: -1
+Big_bang_at_sea0019
+  rotate: true
+  xy: 296, 294
+  size: 180, 113
+  orig: 200, 200
+  offset: 7, 54
+  index: -1
+Big_bang_at_sea0021
+  rotate: false
+  xy: 378, 631
+  size: 180, 114
+  orig: 200, 200
+  offset: 7, 54
+  index: -1
+Big_bang_at_sea0023
+  rotate: false
+  xy: 381, 747
+  size: 183, 116
+  orig: 200, 200
+  offset: 6, 54
+  index: -1
+Big_bang_at_sea0025
+  rotate: false
+  xy: 749, 769
+  size: 184, 119
+  orig: 200, 200
+  offset: 6, 54
+  index: -1
+Big_bang_at_sea0027
+  rotate: false
+  xy: 2, 2
+  size: 185, 124
+  orig: 200, 200
+  offset: 6, 53
+  index: -1
+Big_bang_at_sea0029
+  rotate: false
+  xy: 163, 476
+  size: 186, 127
+  orig: 200, 200
+  offset: 5, 53
+  index: -1
+Big_bang_at_sea0031
+  rotate: false
+  xy: 749, 890
+  size: 188, 130
+  orig: 200, 200
+  offset: 5, 53
+  index: -1
+Big_bang_at_sea0033
+  rotate: false
+  xy: 182, 605
+  size: 189, 128
+  orig: 200, 200
+  offset: 5, 53
+  index: -1
+Big_bang_at_sea0035
+  rotate: false
+  xy: 185, 735
+  size: 191, 124
+  orig: 200, 200
+  offset: 4, 53
+  index: -1
+Big_bang_at_sea0037
+  rotate: false
+  xy: 532, 506
+  size: 136, 118
+  orig: 200, 200
+  offset: 57, 60
+  index: -1
+Big_bang_at_sea0039
+  rotate: true
+  xy: 558, 240
+  size: 99, 94
+  orig: 200, 200
+  offset: 57, 83
+  index: -1
+Big_bang_at_sea0041
+  rotate: false
+  xy: 935, 768
+  size: 87, 80
+  orig: 200, 200
+  offset: 59, 91
+  index: -1
+Gunfire
+  rotate: false
+  xy: 613, 376
+  size: 29, 28
+  orig: 150, 150
+  offset: 62, 63
+  index: -1
+Gunfire_Star_light
+  rotate: false
+  xy: 321, 145
+  size: 65, 53
+  orig: 150, 150
+  offset: 44, 49
+  index: -1
+Light_picture
+  rotate: false
+  xy: 171, 144
+  size: 148, 148
+  orig: 150, 150
+  offset: 1, 1
+  index: -1
+Small_bang_at_sea0001
+  rotate: false
+  xy: 408, 107
+  size: 85, 85
+  orig: 200, 200
+  offset: 57, 60
+  index: -1
+Small_bang_at_sea0003
+  rotate: true
+  xy: 189, 7
+  size: 135, 134
+  orig: 200, 200
+  offset: 31, 35
+  index: -1
+Small_bang_at_sea0005
+  rotate: false
+  xy: 2, 128
+  size: 167, 164
+  orig: 200, 200
+  offset: 14, 20
+  index: -1
+Small_bang_at_sea0007
+  rotate: false
+  xy: 2, 294
+  size: 168, 170
+  orig: 200, 200
+  offset: 10, 14
+  index: -1
+Small_bang_at_sea0009
+  rotate: false
+  xy: 560, 626
+  size: 141, 119
+  orig: 200, 200
+  offset: 30, 42
+  index: -1
+Small_bang_at_sea0011
+  rotate: false
+  xy: 571, 747
+  size: 151, 124
+  orig: 200, 200
+  offset: 25, 39
+  index: -1
+Small_bang_at_sea0013
+  rotate: false
+  xy: 373, 500
+  size: 157, 129
+  orig: 200, 200
+  offset: 22, 36
+  index: -1
+Small_bang_at_sea0015
+  rotate: true
+  xy: 411, 341
+  size: 157, 129
+  orig: 200, 200
+  offset: 22, 36
+  index: -1
+Small_bang_at_sea0017
+  rotate: false
+  xy: 542, 406
+  size: 100, 98
+  orig: 200, 200
+  offset: 59, 58
+  index: -1
+Small_bang_at_sea0019
+  rotate: false
+  xy: 670, 534
+  size: 78, 90
+  orig: 200, 200
+  offset: 60, 67
+  index: -1
+Small_bang_at_sea0021
+  rotate: false
+  xy: 321, 200
+  size: 79, 92
+  orig: 200, 200
+  offset: 60, 66
+  index: -1
+Small_bang_at_sea0023
+  rotate: false
+  xy: 325, 53
+  size: 81, 90
+  orig: 200, 200
+  offset: 59, 69
+  index: -1
+Small_bang_at_sea0025
+  rotate: true
+  xy: 408, 23
+  size: 82, 86
+  orig: 200, 200
+  offset: 59, 76
+  index: -1
+Small_bang_at_sea0027
+  rotate: false
+  xy: 939, 936
+  size: 83, 84
+  orig: 200, 200
+  offset: 58, 81
+  index: -1
+Small_bang_at_sea0029
+  rotate: false
+  xy: 939, 850
+  size: 83, 84
+  orig: 200, 200
+  offset: 59, 83
+  index: -1
+Small_bang_at_sea0031
+  rotate: false
+  xy: 644, 418
+  size: 80, 86
+  orig: 200, 200
+  offset: 62, 83
+  index: -1
+Small_bang_at_sea0033
+  rotate: false
+  xy: 703, 662
+  size: 82, 83
+  orig: 200, 200
+  offset: 61, 84
+  index: -1
+Small_bang_at_sea0035
+  rotate: false
+  xy: 787, 686
+  size: 82, 81
+  orig: 200, 200
+  offset: 61, 84
+  index: -1
+Small_bang_at_sea0037
+  rotate: false
+  xy: 787, 605
+  size: 81, 79
+  orig: 200, 200
+  offset: 62, 86
+  index: -1
+Small_bang_at_sea0039
+  rotate: false
+  xy: 750, 528
+  size: 80, 75
+  orig: 200, 200
+  offset: 62, 89
+  index: -1
+Small_bang_at_sea0041
+  rotate: false
+  xy: 542, 341
+  size: 69, 63
+  orig: 200, 200
+  offset: 65, 96
+  index: -1

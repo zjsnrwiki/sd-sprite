@@ -9,36 +9,38 @@
 <canvas width="350" height="350" id="canvas" style="border:1px solid black;"></canvas>
 <br>
 <button id="switch-damage" onclick="switch_damage()">中破</button>
-<button onclick="play('attack')">炮击</button>
+<button onclick="play_fire()">炮击</button>
 <button onclick="play('throw')">鱼雷</button>
-<button onclick="play('damage')">中弹</button>
-<button onclick="play('Antiaircraft')">防空</button>
-<button onclick="play('wreck')">沉没(WIP)</button>
+<button onclick="play_hit()">中弹</button>
+<!--button onclick="play('Antiaircraft')">防空</button-->
+<!--button onclick="play('wreck')">沉没(WIP)</button-->
 <button onclick="play_skill()">技能</button>
 </body>
 <script>
-var spine_name = 'Ship_girl_1099';
-var filename = "assets/" + spine_name;
+var spine_name = 'Ship_girl_1001';
+var ship_file = "assets/" + spine_name;
+var bullet_file = "assets/Gunfire_universal";
 
 var lastFrameTime = Date.now() / 1000;
 var ctx;
 var asset;
-var skeleton, state;
+var ship, bullet;
 var renderer;
 var damage = false;
 var playing = false;
+var bullet_anim = null;
 
 function switch_damage() {
     var btn = document.getElementById("switch-damage");
     if (damage) {
-        damage = false;
         btn.innerText = "中破";
-        skeleton.setSkinByName("normal");
+        ship.skeleton.setSkinByName("normal");
+        damage = false;
     } else {
-        damage = true;
         btn.innerText = "恢复";
-        skeleton.setSkinByName("damage");
-        play_damage();
+        ship.skeleton.setSkinByName("damage");
+        play_hit();
+        damage = true;
     }
 }
 
@@ -47,32 +49,63 @@ function init() {
     ctx = canvas.getContext("2d");
 
     renderer = new spine.canvas.SkeletonRenderer(ctx);
-    renderer.debugRendering = true;
+    //renderer.debugRendering = true;
 
     asset = new spine.canvas.AssetManager();
 
-    asset.loadText(filename + ".json");
-    asset.loadText(filename + ".atlas");
-    asset.loadTexture(filename + ".png");
+    asset.loadText(ship_file + ".json");
+    asset.loadText(ship_file + ".atlas");
+    asset.loadTexture(ship_file + ".png");
+    asset.loadText(bullet_file + ".json");
+    asset.loadText(bullet_file + ".atlas");
+    asset.loadTexture(bullet_file + ".png");
 
     requestAnimationFrame(wait_asset);
 }
 
 function wait_asset() { if (asset.isLoadingComplete()) init2(); else requestAnimationFrame(wait_asset); }
 
-function init2() {
+function get_asset(filename) {
     var atlas = new spine.TextureAtlas(asset.get(filename + ".atlas"), function(p) { return asset.get("assets/" + p); });
     var data = new spine.SkeletonJson(new spine.TextureAtlasAttachmentLoader(atlas));
-    skeleton = new spine.Skeleton(data.readSkeletonData(asset.get(filename + ".json")));
-    console.log(asset.get(filename + ".json"));
+    var skeleton = new spine.Skeleton(data.readSkeletonData(asset.get(filename + ".json")));
     skeleton.flipY = true;
-    skeleton.setSkinByName("normal");
 
-    state = new spine.AnimationState(new spine.AnimationStateData(skeleton.data));
-    state.setAnimation(0, "normal", true);
+    var state = new spine.AnimationState(new spine.AnimationStateData(skeleton.data));
+
+    return { "skeleton": skeleton, "state": state };
+}
+
+function init2() {
+    ship = get_asset(ship_file);
+    ship.skeleton.setSkinByName("normal");
+    ship.state.setAnimation(0, "normal", true);
+    console.log(ship.skeleton);
+
+    bullet = get_asset(bullet_file);
+    var slots = bullet.skeleton.data.findSkin("default").attachments;
+    for (var i = 0; i < slots.length; i++)
+        if (slots[i].Light_picture) {
+            slots.splice(i);
+            break;
+        }
+    //bullet.state.setAnimation(1, "Small_bang_at_sea", false);
+    bullet.state.addListener({
+        event: function() { },
+        complete: function(track, loop) { bullet_anim = null; },
+        start: function() { },
+        end: function() { }
+    });
 
     ctx.translate(175, 315);
     requestAnimationFrame(render);
+}
+
+function render_obj(obj, delta) {
+    obj.state.update(delta);
+    obj.state.apply(obj.skeleton);
+    obj.skeleton.updateWorldTransform();
+    renderer.draw(obj.skeleton);
 }
 
 function render() {
@@ -83,10 +116,13 @@ function render() {
     ctx.fillStyle = "#fff";
     ctx.fillRect(-175, -315, 350, 350);
 
-    state.update(delta);
-    state.apply(skeleton);
-    skeleton.updateWorldTransform();
-    renderer.draw(skeleton);
+    render_obj(ship, delta);
+    if (bullet_anim == "hit") {
+        var pt = ship.skeleton.findBone('Damage_Point');
+        ctx.translate(-pt.y, -pt.x);
+        render_obj(bullet, delta);
+        ctx.translate(pt.y, pt.x);
+    }
 
     requestAnimationFrame(render);
 }
@@ -94,20 +130,33 @@ function render() {
 function play(anim) {
     if (playing) return;
     playing = true;
-    state.setAnimation(0, anim, false);
-    state.addListener({
+    ship.state.setAnimation(0, anim, false);
+    ship.state.addListener({
         event: function() { },
         complete: function(track, loop) {
             playing = false;
-            state.setAnimation(0, "normal", true);
-            state.clearListeners();
+            ship.state.setAnimation(0, "normal", true);
+            ship.state.clearListeners();
         },
         start: function() { },
         end: function() { }
     });
 }
 
-function play_damage() { play("damage"); }
+function play_fire() {
+    if (playing) return;
+    bullet_anim = "fire";
+    bullet.state.setAnimation(1, "Gunfire_small", false);
+    play("attack");
+}
+
+function play_hit() {
+    if (playing) return;
+    bullet_anim = "hit";
+    var anim = damage ? "Big_bang_at_sea" : "Small_bang_at_sea";
+    bullet.state.setAnimation(1, anim, false);
+    play("damage");
+}
 
 function play_skill() { play("Dodging"); }
 
